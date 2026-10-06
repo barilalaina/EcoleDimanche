@@ -1,0 +1,154 @@
+<Window x:Class="EcoleDimanche.Views.EleveDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Élève"
+        Height="680" Width="720"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        Background="{StaticResource FondApp}">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Identité -->
+                <TextBlock Text="Identité de l'élève" FontSize="14" FontWeight="Bold"
+                           Foreground="{StaticResource Primaire}" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <TextBlock Text="Nom *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtNom" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="2">
+                        <TextBlock Text="Prénom *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtPrenom" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="Genre *" Style="{StaticResource Libelle}"/>
+                        <ComboBox x:Name="CboGenre" Margin="0,2,0,10" Padding="8,6" FontSize="13">
+                            <ComboBoxItem Content="Masculin"/>
+                            <ComboBoxItem Content="Féminin"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Classe" Style="{StaticResource Libelle}"/>
+                        <ComboBox x:Name="CboClasse" Margin="0,2,0,10" Padding="8,6" FontSize="13"
+                                  DisplayMemberPath="NomClasse"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0">
+                        <TextBlock Text="Date de naissance *" Style="{StaticResource Libelle}"/>
+                        <DatePicker x:Name="DtpNaissance" Margin="0,2,0,10" Padding="8,4" FontSize="13"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="2">
+                        <TextBlock Text="Lieu de naissance *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtLieuNaissance" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                        <TextBlock Text="Adresse *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtAdresse" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Père -->
+                <TextBlock Text="Père" FontSize="14" FontWeight="Bold"
+                           Foreground="{StaticResource Primaire}" Margin="0,10,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Nom du père *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtNomPere" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Téléphone père *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtTelPere" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="4">
+                        <TextBlock Text="Facebook père *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtFbPere" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Mère -->
+                <TextBlock Text="Mère" FontSize="14" FontWeight="Bold"
+                           Foreground="{StaticResource Primaire}" Margin="0,10,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Nom de la mère *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtNomMere" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Téléphone mère *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtTelMere" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="4">
+                        <TextBlock Text="Facebook mère *" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtFbMere" Style="{StaticResource Champ}"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Informations complémentaires -->
+                <TextBlock Text="Informations complémentaires" FontSize="14" FontWeight="Bold"
+                           Foreground="{StaticResource Primaire}" Margin="0,10,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Nb. frères" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtNbFreres" Style="{StaticResource Champ}" Text="0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Nb. sœurs" Style="{StaticResource Libelle}"/>
+                        <TextBox x:Name="TxtNbSoeurs" Style="{StaticResource Champ}" Text="0"/>
+                    </StackPanel>
+                    <CheckBox x:Name="ChkVitParents" Grid.Column="4" Content="Vit avec ses parents"
+                              FontSize="13" VerticalAlignment="Center" Margin="0,14,0,0"/>
+                    <CheckBox x:Name="ChkBaptise" Grid.Column="6" Content="Baptisé(e)"
+                              FontSize="13" VerticalAlignment="Center" Margin="0,14,0,0"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="Annuler" Style="{StaticResource BoutonSecondaire}" Click="Annuler" Margin="0,0,8,0"/>
+            <Button Content="Enregistrer" Style="{StaticResource BoutonPrimaire}" Click="Enregistrer" MinWidth="120"/>
+        </StackPanel>
+    </Grid>
+</Window>

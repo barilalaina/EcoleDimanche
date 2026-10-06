@@ -1,0 +1,32 @@
+<Window x:Class="EcoleDimanche.Views.ClasseDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Classe"
+        Height="340" Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource FondApp}">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Nom de la classe *" Style="{StaticResource Libelle}"/>
+            <TextBox x:Name="TxtNomClasse" Style="{StaticResource Champ}"/>
+
+            <TextBlock Text="Tranche d'âge (ex : 6 - 8 ans)" Style="{StaticResource Libelle}"/>
+            <TextBox x:Name="TxtTrancheAge" Style="{StaticResource Champ}"/>
+
+            <TextBlock Text="Moniteur principal" Style="{StaticResource Libelle}"/>
+            <ComboBox x:Name="CboMoniteur" Margin="0,2,0,10" Padding="8,6" FontSize="13"
+                      DisplayMemberPath="NomComplet"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Annuler" Style="{StaticResource BoutonSecondaire}" Click="Annuler" Margin="0,0,8,0"/>
+            <Button Content="Enregistrer" Style="{StaticResource BoutonPrimaire}" Click="Enregistrer" MinWidth="110"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,45 @@
+<Window x:Class="EcoleDimanche.Views.ClassesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestion des Classes"
+        Height="560" Width="860"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource FondApp}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Classes" FontSize="20" FontWeight="Bold"
+                   Foreground="{StaticResource TextePrincipal}" Margin="0,0,0,14"/>
+
+        <Grid Grid.Row="1" Margin="0,0,0,14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Content="+ Ajouter" Style="{StaticResource BoutonPrimaire}" Click="Ajouter" Margin="0,0,8,0"/>
+                <Button Content="Modifier" Style="{StaticResource BoutonSecondaire}" Click="Modifier" Margin="0,0,8,0"/>
+                <Button Content="Supprimer" Style="{StaticResource BoutonDanger}" Click="Supprimer"/>
+            </StackPanel>
+            <TextBox Grid.Column="1" x:Name="TxtRecherche" Width="220" Style="{StaticResource Champ}" Margin="0"
+                     VerticalContentAlignment="Center" TextChanged="Rechercher"
+                     ToolTip="Rechercher par nom ou tranche d'âge"/>
+        </Grid>
+
+        <Border Grid.Row="2" Style="{StaticResource Carte}" Padding="0">
+            <DataGrid x:Name="Grille" Style="{StaticResource Grille}" BorderThickness="0"
+                      MouseDoubleClick="Modifier">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom de la classe" Binding="{Binding NomClasse}" Width="*"/>
+                    <DataGridTextColumn Header="Tranche d'âge" Binding="{Binding TrancheAge}" Width="*"/>
+                    <DataGridTextColumn Header="Moniteur principal" Binding="{Binding MoniteurPrincipal}" Width="*"/>
+                    <DataGridTextColumn Header="Élèves" Binding="{Binding NombreEleves}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Window>

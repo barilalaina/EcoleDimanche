@@ -1,0 +1,124 @@
+<Window x:Class="EcoleDimanche.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="École du Dimanche — Tableau de bord"
+        Height="720" Width="1150"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource FondApp}"
+        Activated="Fenetre_Activated">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- En-tête -->
+        <Border Grid.Row="0" Background="{StaticResource Primaire}" Padding="24,18">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="&#x1F4D6;" FontSize="26" VerticalAlignment="Center" Margin="0,0,14,0"/>
+                <StackPanel>
+                    <TextBlock Text="École du Dimanche" Foreground="White" FontSize="22" FontWeight="Bold"/>
+                    <TextBlock x:Name="TxtDate" Foreground="#C7D2FE" FontSize="13"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Cartes de statistiques -->
+        <UniformGrid Grid.Row="1" Rows="1" Columns="4" Margin="24,20,24,0">
+            <Border Style="{StaticResource Carte}" Margin="0,0,8,0">
+                <StackPanel>
+                    <TextBlock Text="ÉLÈVES" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TexteSecondaire}"/>
+                    <TextBlock x:Name="TxtNbEleves" Text="0" FontSize="34" FontWeight="Bold" Foreground="{StaticResource Primaire}"/>
+                    <TextBlock x:Name="TxtGenres" FontSize="12" Foreground="{StaticResource TexteSecondaire}"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Carte}" Margin="4,0">
+                <StackPanel>
+                    <TextBlock Text="CLASSES" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TexteSecondaire}"/>
+                    <TextBlock x:Name="TxtNbClasses" Text="0" FontSize="34" FontWeight="Bold" Foreground="{StaticResource Succes}"/>
+                    <TextBlock x:Name="TxtBaptises" FontSize="12" Foreground="{StaticResource TexteSecondaire}"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Carte}" Margin="4,0">
+                <StackPanel>
+                    <TextBlock Text="MONITEURS" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TexteSecondaire}"/>
+                    <TextBlock x:Name="TxtNbMoniteurs" Text="0" FontSize="34" FontWeight="Bold" Foreground="{StaticResource Accent}"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Carte}" Margin="8,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="PRÉSENTS (DERNIER DIMANCHE)" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TexteSecondaire}"/>
+                    <TextBlock x:Name="TxtNbPresents" Text="0" FontSize="34" FontWeight="Bold" Foreground="{StaticResource Danger}"/>
+                    <TextBlock x:Name="TxtDateDimanche" FontSize="12" Foreground="{StaticResource TexteSecondaire}"/>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <!-- Navigation -->
+        <UniformGrid Grid.Row="2" Rows="1" Columns="4" Margin="24,18,24,0">
+            <Button Style="{StaticResource BoutonNav}" Margin="0,0,8,0" Click="OuvrirEleves">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x1F467;" FontSize="18" Margin="0,0,10,0"/>
+                    <TextBlock Text="Élèves"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource BoutonNav}" Margin="4,0" Click="OuvrirClasses">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x1F3EB;" FontSize="18" Margin="0,0,10,0"/>
+                    <TextBlock Text="Classes"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource BoutonNav}" Margin="4,0" Click="OuvrirMoniteurs">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x1F9D1;&#x200D;&#x1F3EB;" FontSize="18" Margin="0,0,10,0"/>
+                    <TextBlock Text="Moniteurs"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource BoutonNav}" Margin="8,0,0,0" Click="OuvrirPresences">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x2705;" FontSize="18" Margin="0,0,10,0"/>
+                    <TextBlock Text="Présences"/>
+                </StackPanel>
+            </Button>
+        </UniformGrid>
+
+        <!-- Détails : effectifs par classe + dernières inscriptions -->
+        <Grid Grid.Row="3" Margin="24,18,24,24">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource Carte}" Margin="0,0,8,0">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Effectifs par classe" FontSize="15"
+                               FontWeight="Bold" Foreground="{StaticResource TextePrincipal}" Margin="0,0,0,10"/>
+                    <DataGrid x:Name="GrilleClasses" Style="{StaticResource Grille}" BorderThickness="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Classe" Binding="{Binding NomClasse}" Width="*"/>
+                            <DataGridTextColumn Header="Moniteur principal" Binding="{Binding Moniteur}" Width="*"/>
+                            <DataGridTextColumn Header="Élèves" Binding="{Binding NombreEleves}" Width="70"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Style="{StaticResource Carte}" Margin="8,0,0,0">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Dernières inscriptions" FontSize="15"
+                               FontWeight="Bold" Foreground="{StaticResource TextePrincipal}" Margin="0,0,0,10"/>
+                    <DataGrid x:Name="GrilleInscriptions" Style="{StaticResource Grille}" BorderThickness="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                            <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="*"/>
+                            <DataGridTextColumn Header="Classe" Binding="{Binding Classe}" Width="*"/>
+                            <DataGridTextColumn Header="Inscription" Binding="{Binding DateInscription}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
